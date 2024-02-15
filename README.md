@@ -72,5 +72,8 @@ yarn preview
 bun run preview
 ```
 
-Visit the deployed site [here](https://nuxt-dummy-products.netlify.app/).
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information
+
+## Deployed Site
+
+Visit the deployed site [here](https://nuxt-dummy-products.netlify.app/).
