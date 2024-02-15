@@ -1,5 +1,22 @@
 <script setup>
   const { id } = useRoute().params;
+
+  const uri = 'https://fakestoreapi.com/products/' + id;
+  console.log(uri);
+  const { data: product } = await useFetch(uri, {
+    key: id
+  });
+
+  if (!product.value) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: `Product ${id} not found`,
+      fatal: true
+    });
+  }
+
+  console.log(product);
+
   definePageMeta({
   layout: 'products'
   });
@@ -7,8 +24,11 @@
 
 <template>
   <div>
-    <p>Product details for {{ id }}</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum suscipit libero dolore, numquam a eligendi tempora sapiente sunt ex architecto saepe eaque natus placeat, impedit optio? Inventore incidunt nulla ducimus?</p>
+    <Head>
+      <Title> Nuxt Product | {{ product.title }}</Title>
+      <Meta name="description" :content="product.description" />
+    </Head>
+    <ProductDetails :product="product"/>
   </div>
 </template>
 
